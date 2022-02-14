@@ -55,9 +55,10 @@ def PUTAccounts ():
     PUT_AWS_Accounts_url = base_url + "system/sdn-connector/AWS-Dynamic-Rules"
 
     Accounts = ["347754476247", "431985927793"]
+    prepayload = {"external-account-list": []}
+      
     for x in Accounts:
-        prepayload = {
-                    "external-account-list": [
+      prepayload["external-account-list"].append(
                         {
                             "role-arn": "arn:aws:iam::{}:role/Fortigate-Role-ToBeAssumed".format(x),
                             "region-list": [
@@ -66,8 +67,8 @@ def PUTAccounts ():
                                 }
                             ]
                         }
-                    ]
-                }
+      )
+
 
 
 
