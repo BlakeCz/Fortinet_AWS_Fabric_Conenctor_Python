@@ -1,11 +1,3 @@
-#Get Accounts before
-#Get Subnets before
-
-#Add Account - need a loop that does it fior every account
-#Add Subnets - needs looking at, how can we add to the end each time?
-
-#Get Accounts after
-#Get Subnets after
 
 import requests
 import json
