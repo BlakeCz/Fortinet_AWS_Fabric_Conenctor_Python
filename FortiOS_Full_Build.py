@@ -84,7 +84,7 @@ def PUTAccounts ():
 
     print('AWS Account Added!')
 
-
+""" 
 def PUTSubnets ():
 
     PUT_AWS_Subnets_URL = base_url + "firewall/address/AWSDynamicRule1"
@@ -96,24 +96,63 @@ def PUTSubnets ():
 
     payload = json.dumps(prepayload)
 
-
-    headers = {
-    'Authorization': 'Bearer 6sxksn568pNkqd6yq84sbmh1zx1w8k',
-    'Content-Type': 'text/plain'
-    }
-
     response = requests.request("PUT", PUT_AWS_Subnets_URL, headers=headers, data=payload, verify=False)
 
+    print(response.text) """
+
+
+def POSTDynamicAddress ():
+
+    POST_Dynamic_Address_URL = base_url + "firewall/address"
+
+    prepayload =  {
+    
+            "name": "AWSDynamicRule2",
+            "type": "dynamic",
+            "sub-type": "sdn",
+            "sdn": "AWS-Dynamic-Rules",
+            "interface": "",
+            "filter": "SubnetId=subnet-7653131f | SubnetId=subnet-0c223b152937d018f | SubnetId=subnet-0b51741dc095e467e",
+    }
+
+    payload = json.dumps(prepayload)
+
+    response = requests.request("POST",  POST_Dynamic_Address_URL, headers=headers, data=payload, verify=False)
+
+    #print(response.text)
+    #data = json.loads(response.text)
+    #print(data['mkey'])
+
+
+def PUTRootAddrGrp ():
+
+    PUT_Root_AddrGrp_URL = base_url + "firewall/addrgrp/Dynamic-Addrgrp"
+
+    prepayload =  {
+            "member": [
+                {
+                    "name": "AWSDynamicRule1",
+                },
+                {
+                    "name": "AWSDynamicRule2",
+                }
+            ],
+        }
+
+
+    payload = json.dumps(prepayload)
+
+    response = requests.request("PUT",  PUT_Root_AddrGrp_URL, headers=headers, data=payload, verify=False)
+
     print(response.text)
-
-
 
 
 GetSubnetFilters()
 GetAWSAccounts()
 PUTAccounts()
 GetAWSAccounts()
-
+POSTDynamicAddress()
+PUTRootAddrGrp()
 
 
 
