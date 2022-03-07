@@ -12,7 +12,7 @@ headers = {
 }
 
 
-IP = "18.133.236.75"
+IP = "18.168.152.167"
 base_url = "https://{FortigateIP}/api/v2/cmdb/".format(FortigateIP=IP)
 
 def GetSubnetFilters ():
